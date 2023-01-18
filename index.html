@@ -12,14 +12,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <div class="container">
+        <div class="overlay escondido">   
+            <div class="abaLateral">
+                huuhhu
+            </div> <!-- fechamento aba Lateral-->
+        </div> <!-- fechamento overlay -->
         <div class="boxUp">
             <img src="./img/logo 1.png" />
-            <img src="./img/Vector (1).png" />
+            <img onclick="abrirAbaLateral()" src="./img/Vector (1).png" />
         </div> <!-- fechamento boxUp -->
         <div class="areaConversa">
-            Área de conversa
+            
         </div> <!-- fechamento areaConversa -->
         <div class="boxLow">
             <input type="text" placeholder="Escreva aqui...">
@@ -27,6 +31,7 @@
         </div> <!-- fechamento boxLow -->
     </div> <!-- fechamento container -->
 
-    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./script.js/script.js"></script>
 </body>
 </html>
