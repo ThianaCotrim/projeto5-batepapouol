@@ -6,6 +6,8 @@ let nomeUsuario =
         name: nome
     }
 
+
+
 function abrirAbaLateral() {
     const abaLateral = document.querySelector('.overlay');
     abaLateral.classList.remove('escondido');
@@ -34,10 +36,29 @@ const resposta = axios.post('https://mock-api.driven.com.br/api/v6/uol/participa
 
 resposta.then(entrarNaSala);
 
+function mantendoConexao(){
+
+const manterConexao = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', nomeUsuario);
+
+manterConexao.then(respostaChegou)
+manterConexao.catch()
+
+
+
+
+}
+setInterval(mantendoConexao, 5000);
+
 
 function respostaChegou(resposta){
     
+    console.log('resposta chegou!!!!');
     console.log(resposta);
    
+}
+
+function deuRuim (){
+    console.log('deu ruim');
+
 }
 
