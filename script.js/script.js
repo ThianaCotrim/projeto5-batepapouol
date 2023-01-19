@@ -14,7 +14,6 @@ const mensagemDigitada = document.querySelector('.boxLow input');
 verificarUsuario();
 
 
-
 function verificarUsuario(){
     
     const resposta = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', nomeUsuario);
@@ -42,8 +41,6 @@ manterConexao.catch()
 function respostaChegou(resposta){
 
 
-
-   
     let batePapo = document.querySelector('.areaConversa');
     batePapo.innerHTML = '';
 
