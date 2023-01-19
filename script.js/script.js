@@ -55,7 +55,7 @@ function respostaChegou(resposta){
 
             batePapo.innerHTML += `
             
-            <div class="${tipo}">
+            <div data-test="message" class="${tipo}">
                 (${hora}) ${nome1} para ${nome2}: ${texto}
             </div> <!-- fechamento entra na sala -->
         
