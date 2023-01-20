@@ -68,8 +68,12 @@ function respostaChegou(resposta){
 
 
 function deuRuim (erro){
+    
     console.log('deu ruim');
     console.log(erro);
+    window.location.reload();
+
+
 }
 
 
