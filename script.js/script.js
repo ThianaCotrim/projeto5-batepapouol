@@ -39,9 +39,6 @@ manterConexao.catch()
 
 
 function respostaChegou(resposta){
-    
-
-  
 
     let batePapo = document.querySelector('.areaConversa');
                 batePapo.innerHTML = ''; 
@@ -151,3 +148,13 @@ function usuarioVerificado (){
         
         setInterval(mantendoConexao, 5000);
 }
+
+document.addEventListener("keypress", function (e){
+
+
+    if (e.key === "Enter") {
+
+        const btn = document.querySelector('.boxLow img')
+        btn.click();
+    }
+})
