@@ -39,13 +39,16 @@ manterConexao.catch()
 
 
 function respostaChegou(resposta){
+    
 
+  
 
     let batePapo = document.querySelector('.areaConversa');
-    batePapo.innerHTML = '';
+                batePapo.innerHTML = ''; 
+
+    
 
         for (let i = 0; i < 100; i++){
-           
 
             let hora = resposta.data[i].time;
             let nome1 = resposta.data[i].from;
@@ -53,18 +56,40 @@ function respostaChegou(resposta){
             let texto = resposta.data[i].text;
             let tipo = resposta.data[i].type;
 
+
+            if (tipo === 'status' || tipo === 'message' ){
+
+
             batePapo.innerHTML += `
             
             <div data-test="message" class="${tipo}">
                 (${hora}) ${nome1} para ${nome2}: ${texto}
             </div> <!-- fechamento entra na sala -->
         
-
             `;
         }
 
+            if (tipo === 'private_message' && (nome1 === nome || nome2 === nome)){
+
+
+            batePapo.innerHTML += `
+            
+            <div data-test="message" class="${tipo}">
+                (${hora}) ${nome1} para ${nome2}: ${texto}
+            </div> <!-- fechamento entra na sala -->
+        
+            `;
+        }
+    }
+
         batePapo.querySelector('div:last-child').scrollIntoView();
     }
+
+
+
+
+
+
 
 
 function deuRuim (erro){
@@ -94,6 +119,7 @@ function pegarConversaNoServidor(){
 
 function enviarMensagem(){
 
+
     const msg = {
         from: nome,
         to: "Todos",
@@ -102,6 +128,8 @@ function enviarMensagem(){
     }
 
     const enviar = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', msg);
+
+    mensagemDigitada.value = "";
 
     enviar.then(pegarConversaNoServidor);
     enviar.catch(deuRuim);
