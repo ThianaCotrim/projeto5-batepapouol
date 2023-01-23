@@ -10,7 +10,6 @@ let batePapo = document.querySelector('.areaConversa');
 const mensagemDigitada = document.querySelector('.boxLow input');
 
    
-
 verificarUsuario();
 
 
@@ -18,14 +17,10 @@ function verificarUsuario(){
     
     const resposta = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', nomeUsuario);
 
-    resposta
-    .then(usuarioVerificado)
-
+    resposta.then(usuarioVerificado)
 }
 
 function mantendoConexao(){
-
-    
 
 const manterConexao = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', nomeUsuario);
 
@@ -35,15 +30,10 @@ manterConexao.catch()
 }
 
 
-
-
-
 function respostaChegou(resposta){
 
     let batePapo = document.querySelector('.areaConversa');
                 batePapo.innerHTML = ''; 
-
-    
 
         for (let i = 0; i < 100; i++){
 
@@ -53,14 +43,12 @@ function respostaChegou(resposta){
             let texto = resposta.data[i].text;
             let tipo = resposta.data[i].type;
 
-
             if (tipo === 'status' || tipo === 'message' ){
-
 
             batePapo.innerHTML += `
             
             <div data-test="message" class="${tipo}">
-                (${hora}) ${nome1} para ${nome2}: ${texto}
+                (${hora}) <span> &nbsp ${nome1} &nbsp </span> para &nbsp <span> ${nome2} </span>: &nbsp ${texto}
             </div> <!-- fechamento entra na sala -->
         
             `;
@@ -68,25 +56,17 @@ function respostaChegou(resposta){
 
             if (tipo === 'private_message' && (nome1 === nome || nome2 === nome)){
 
-
             batePapo.innerHTML += `
             
             <div data-test="message" class="${tipo}">
-                (${hora}) ${nome1} para ${nome2}: ${texto}
+                (${hora}) <span> ${nome1} </span> para <span>${nome2}</span>: ${texto}
             </div> <!-- fechamento entra na sala -->
         
             `;
         }
     }
-
         batePapo.querySelector('div:last-child').scrollIntoView();
     }
-
-
-
-
-
-
 
 
 function deuRuim (erro){
@@ -94,11 +74,7 @@ function deuRuim (erro){
     console.log('deu ruim');
     console.log(erro);
     window.location.reload();
-
-
 }
-
-
 
 function pegarConversaNoServidor(){
 
@@ -106,16 +82,9 @@ function pegarConversaNoServidor(){
 
     promessa.then(respostaChegou);
     promessa.catch(deuRuim);
-
-
 }
 
-
-
-
-
 function enviarMensagem(){
-
 
     const msg = {
         from: nome,
@@ -133,14 +102,8 @@ function enviarMensagem(){
 }
 
 
-
-
-
-
 function usuarioVerificado (){
    
-    
-
         pegarConversaNoServidor()
         setInterval(function (){ 
             pegarConversaNoServidor()
@@ -148,6 +111,7 @@ function usuarioVerificado (){
         
         setInterval(mantendoConexao, 5000);
 }
+
 
 document.addEventListener("keypress", function (e){
 
@@ -157,4 +121,4 @@ document.addEventListener("keypress", function (e){
         const btn = document.querySelector('.boxLow img')
         btn.click();
     }
-})
+});
